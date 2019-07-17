@@ -43,10 +43,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:id="@+id/tweet_mood" tools:ignore="RtlHardcoded"/>
 
-    <Button
-            android:text="Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/button"/>
     <TextView
             android:text="03/11/2017 16:04"
             android:gravity="right"

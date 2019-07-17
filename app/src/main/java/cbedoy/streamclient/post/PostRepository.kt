@@ -1,10 +1,10 @@
 package cbedoy.streamclient.post
 
+import cbedoy.streamclient.StreamUtil
 import cbedoy.streamclient.UtilsProvider
 import io.getstream.core.models.Activity
 import io.getstream.core.options.Pagination
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
 import java.util.*
 import kotlin.random.Random
 
@@ -29,28 +29,108 @@ object PostRepository : AnkoLogger {
         "https://fruitfulcode.com/wp-content/uploads/2016/08/material-design-main.jpg"
     )
 
+    private val quotes = arrayListOf(
+        "It’s not about ideas. It’s about making ideas happen.",
+        "Always deliver more than expected.",
+        "The most courageous act is still to think for yourself. Aloud.",
+        "Don’t be intimidated by what you don’t know. That can be your greatest strength and ensure that you do things differently from everyone else.",
+        "Fearlessness is like a muscle. I know from my own life that the more I exercise it, the more natural it becomes to not let my fears run me.",
+        "One does not discover new lands without consenting to lose sight of the shore for a very long time.Surround yourself with only people who are going to lift you higher."
+    )
+
+    private val girls = arrayListOf(
+        "https://pbs.twimg.com/profile_images/963283083003744256/AWGHZqGQ_400x400.jpg",
+        "https://pbs.twimg.com/profile_images/800158152188719104/xW6g4Gqt_400x400.jpg",
+        "https://pbs.twimg.com/profile_images/587751679388336128/8v-hFIHK_400x400.jpg",
+        "https://pbs.twimg.com/profile_images/1108530483707764738/WAD80_6A_400x400.jpg",
+        "https://pbs.twimg.com/profile_images/1108530483707764738/WAD80_6A_400x400.jpg",
+        "https://pbs.twimg.com/profile_images/766439373638205440/l4bMv3ub_400x400.jpg",
+        "https://pbs.twimg.com/profile_images/1115067853466677249/KvaF30I__400x400.jpg",
+        "https://pbs.twimg.com/profile_images/1117085128012881921/R8AoETKC_400x400.jpg",
+        "https://pbs.twimg.com/profile_images/1128283268917252096/rgEsnesc_400x400.jpg",
+        "https://pbs.twimg.com/profile_images/1143894793703034884/kRt3XkBI_400x400.jpg",
+        "https://pbs.twimg.com/profile_images/1059815799542767617/D8sX_AMY_400x400.jpg",
+        "https://pbs.twimg.com/profile_images/984900845648171009/Y4-puDDN_400x400.jpg"
+    )
+
+    private val girlsNames = arrayListOf(
+        "ELVIE ANDERSON",
+        "GRACE EVAN",
+        "FREYA SIMPOSON",
+        "HEIDI THOMBSON",
+        "LACEY TAYLOR",
+        "LYLA SMITH",
+        "VICTORIA WILLIAMS",
+        "LEAH BROWN",
+        "IRIS JONES",
+        "KATIE BRIDGET",
+        "ZOE ANGES",
+        "AURORA MILLEY"
+    )
+
     //  Actor is the user id of the person performing the activity.
     //  Tweet is a custom field containing the message.
     //  Verb is the type of activity the actor is engaging in.
     //  Object is the id of the tweet object in your database.
 
     fun addActivity(tweet: String) : Activity {
-        val userId = UtilsProvider.getNickname()
-        val feed = UtilsProvider.getClient().flatFeed("user", userId)
-        info(feed)
-        val activity = Activity.builder()
-            .actor(userId)  //
-            .verb("tweet")
-            .`object`(UUID.randomUUID().toString())
-            .extraField("tweet", tweet)
-            .extraField("content", randomContent())
-            .extraField("mood", randomMood())
-            .extraField("number", randomNumber())
-            .build()
+        val nickname = UtilsProvider.getNickname()
+        val feed = StreamUtil.flatFeed("user", nickname)
 
-        info(activity)
+        val activity: Activity
+        if (nickname == "system"){
+            val criteria = Random(System.currentTimeMillis()).nextInt(9) % 2 == 0
+            activity = if (criteria){
+                createTinderContent()
+            }else{
+                createQuoteContent()
+            }
+        }else{
+            activity = Activity.builder()
+                .actor(nickname)  //
+                .verb("tweet")
+                .`object`(UUID.randomUUID().toString())
+                .extraField("tweet", tweet)
+                .extraField("content", randomContent())
+                .extraField("mood", randomMood())
+                .extraField("number", randomNumber())
+                .build()
+        }
 
         return feed.addActivity(activity).get()
+    }
+
+    private fun createTinderContent() : Activity{
+        return Activity.builder()
+            .actor("system")
+            .verb("tweet")
+            .`object`(UUID.randomUUID().toString())
+            .extraField("type", "tinder")
+            .extraField("name", randomName())
+            .extraField("avatar", randomAvatar())
+            .build()
+    }
+
+    private fun randomName(): String {
+        return girlsNames.shuffled()[0]
+    }
+
+    private fun randomAvatar(): String {
+        return girls.shuffled()[0]
+    }
+
+    private fun createQuoteContent() : Activity{
+        return Activity.builder()
+            .actor("system")
+            .verb("tweet")
+            .`object`(UUID.randomUUID().toString())
+            .extraField("type", "quote")
+            .extraField("content", randomQuote())
+            .build()
+    }
+
+    private fun randomQuote(): String {
+        return quotes.shuffled()[0]
     }
 
     private fun randomContent(): String {
@@ -67,7 +147,7 @@ object PostRepository : AnkoLogger {
 
     fun loadActivities(): MutableList<Activity>? {
         val userId = UtilsProvider.getNickname()
-        val feed = UtilsProvider.getClient().flatFeed("user", userId)
+        val feed = StreamUtil.flatFeed("user", userId)
         return feed.getActivities(Pagination().limit(10)).get()
     }
 }

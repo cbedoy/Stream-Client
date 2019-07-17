@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:background="@color/backgroundColor"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="vertical"
+                  android:layout_margin="32dp"
+                  android:background="@drawable/rounded_drawable"
+                  android:layout_height="wrap_content">
+
+        <ImageView
+                android:layout_width="@dimen/tinder_avatar_size"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginBottom="@dimen/default_margin"
+                android:layout_height="@dimen/tinder_avatar_size"
+                tools:srcCompat="@tools:sample/avatars" android:id="@+id/post_tinder_avatar"/>
+
+
+        <TextView
+                android:text="Mara Wilson"
+                android:textSize="24sp"
+                android:gravity="center"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/post_tinder_nickname" android:fontFamily="sans-serif-medium"/>
+        <TextView
+                android:text="@string/lorem_text"
+                android:textSize="16sp"
+                android:layout_margin="@dimen/common_padding"
+                android:maxLength="128"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/textView2" android:fontFamily="sans-serif-thin"/>
+        <LinearLayout android:layout_width="wrap_content"
+                      android:orientation="horizontal"
+                      android:layout_gravity="center"
+                      android:layout_height="wrap_content">
+
+            <Button
+
+                    android:layout_margin="@dimen/common_padding"
+                    android:text="Like"
+                    android:textColor="@color/white"
+                    android:background="@color/colorAccent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/post_tinder_like"
+                    android:fontFamily="sans-serif-medium"/>
+
+            <Button
+                    android:layout_margin="@dimen/common_padding"
+                    android:text="Dislike"
+                    android:textColor="@color/white"
+                    android:background="@color/colorPrimary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/post_tinder_un_like"
+                    android:fontFamily="sans-serif-medium"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

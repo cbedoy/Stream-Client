@@ -8,7 +8,7 @@ import org.jetbrains.anko.error
 object StreamRepository : AnkoLogger{
     fun createToken(userId: String): Token? {
         return try {
-            UtilsProvider.getClient().frontendToken(userId)
+            StreamUtil.frontendToken(userId)
         }catch (exception: Exception){
             error(exception)
             null

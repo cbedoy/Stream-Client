@@ -1,19 +1,15 @@
 package cbedoy.streamclient.post
 
-import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import cbedoy.streamclient.R
 import kotlinx.android.synthetic.main.fragment_post.*
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
-import org.jetbrains.anko.support.v4.toast
 
 class PostView : Fragment(), AnkoLogger{
 
@@ -21,6 +17,8 @@ class PostView : Fragment(), AnkoLogger{
     var adapter = PostAdapter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        setHasOptionsMenu(true)
+
         return inflater.inflate(R.layout.fragment_post, container, false)
     }
 
@@ -63,6 +61,20 @@ class PostView : Fragment(), AnkoLogger{
                 post_view_field.text = null
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        return inflater.inflate(R.menu.post_list_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.action_explorer -> {
+                findNavController().navigate(R.id.open_explorer_view)
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onResume() {

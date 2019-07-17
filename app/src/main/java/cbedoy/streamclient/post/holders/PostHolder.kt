@@ -1,4 +1,4 @@
-package cbedoy.streamclient.post
+package cbedoy.streamclient.post.holders
 
 import android.view.View
 import cbedoy.streamclient.base.BaseHolder
