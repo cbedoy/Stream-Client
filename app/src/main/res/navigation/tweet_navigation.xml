@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/tweet_navigation" app:startDestination="@id/loginView">
+
+    <fragment android:id="@+id/loginView" android:name="cbedoy.streamclient.login.LoginView" android:label="LoginView">
+        <action android:id="@+id/open_post_view" app:destination="@id/postView"
+                app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+    <fragment android:id="@+id/postView" android:name="cbedoy.streamclient.post.PostView" android:label="PostView"/>
+</navigation>
