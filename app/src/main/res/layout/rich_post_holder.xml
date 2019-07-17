@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:background="@color/white"
+              android:layout_height="wrap_content">
+
+    <TextView
+            android:text="Nickname"
+            android:textSize="14sp"
+            android:textColor="@color/colorPrimary"
+            android:paddingTop="8dp"
+            android:paddingRight="8dp"
+            android:paddingLeft="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/tweet_nickname"
+            android:fontFamily="sans-serif-medium"/>
+
+    <TextView
+            android:text="@string/lorem_text"
+            android:maxLength="150"
+            android:textSize="16sp"
+            android:paddingBottom="8dp"
+            android:paddingRight="8dp"
+            android:paddingLeft="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/tweet_content" android:fontFamily="sans-serif"/>
+
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" tools:srcCompat="@tools:sample/avatars" android:id="@+id/tweet_image"/>
+
+
+    <TextView
+            android:text="99% of Angry"
+            android:gravity="right"
+            android:textSize="14sp"
+            android:paddingRight="8dp"
+            android:paddingBottom="8dp"
+            android:textColor="@color/colorAccent"
+            android:paddingLeft="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/tweet_mood" tools:ignore="RtlHardcoded"/>
+
+    <Button
+            android:text="Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/button"/>
+    <TextView
+            android:text="03/11/2017 16:04"
+            android:gravity="right"
+            android:textSize="12sp"
+            android:paddingRight="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/tweet_date" tools:ignore="RtlHardcoded"/>
+
+
+
+    <View android:layout_width="match_parent"
+          android:layout_marginLeft="@dimen/common_padding"
+          android:layout_marginRight="@dimen/common_padding"
+          android:background="@color/backgroundColor"
+          android:layout_height="1dp"/>
+</LinearLayout>

@@ -75,6 +75,9 @@ dependencies {
     // For Kotlin use kapt instead of annotationProcessor
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    kapt 'com.github.bumptech.glide:compiler:4.9.0'
+
 
     testImplementation 'junit:junit:4.12'
     //noinspection GradleCompatible
