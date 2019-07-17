@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:background="@color/white"
+              android:layout_height="wrap_content">
+
+    <TextView
+            android:text="Nickname"
+            android:textSize="14sp"
+            android:textColor="@color/colorAccent"
+            android:paddingTop="8dp"
+            android:paddingRight="8dp"
+            android:paddingLeft="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/tweet_nickname"
+            android:fontFamily="sans-serif-medium"/>
+    <TextView
+            android:text="@string/lorem_text"
+            android:maxLength="150"
+            android:textSize="16sp"
+            android:paddingBottom="8dp"
+            android:paddingRight="8dp"
+            android:paddingLeft="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/tweet_content" android:fontFamily="sans-serif"/>
+    <TextView
+            android:text="03/11/2017 16:04"
+            android:gravity="right"
+            android:textSize="12sp"
+            android:paddingRight="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/tweet_date" tools:ignore="RtlHardcoded"/>
+
+    <View android:layout_width="match_parent"
+          android:layout_marginLeft="@dimen/default_margin"
+          android:layout_marginRight="@dimen/default_margin"
+          android:background="@color/backgroundColor"
+          android:layout_height="1dp"/>
+</LinearLayout>
