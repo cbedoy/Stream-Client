@@ -49,6 +49,6 @@ class ExplorerView : Fragment(){
     override fun onResume() {
         super.onResume()
 
-        viewModel.loadExplorer(arrayListOf("alex", "vanessa"))
+        viewModel.loadExplorer(arrayListOf("alex", "vanessa", "system"))
     }
 }
