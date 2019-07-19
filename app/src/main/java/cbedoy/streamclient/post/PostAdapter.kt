@@ -10,10 +10,11 @@ import cbedoy.streamclient.post.holders.QuotePostHolder
 import cbedoy.streamclient.post.holders.RichPostHolder
 import cbedoy.streamclient.post.holders.TinderPostHolder
 import io.getstream.core.models.Activity
+import io.getstream.core.models.EnrichedActivity
 
 class PostAdapter : RecyclerView.Adapter<BasePostHolder>() {
 
-    var dataModel: ArrayList<Activity> = ArrayList()
+    var dataModel: ArrayList<EnrichedActivity> = ArrayList()
     var listener: PostHolderListener? = null
     private val normal = 0
     private val rich = 1
@@ -68,7 +69,7 @@ class PostAdapter : RecyclerView.Adapter<BasePostHolder>() {
     }
 
     interface PostHolderListener{
-        fun onSelectedOptionsFromActivity(options: OPTIONS, activity: Activity)
+        fun onSelectedOptionsFromActivity(options: OPTIONS, activity: EnrichedActivity)
 
         enum class OPTIONS {
             LIKE, COMMENT, SHARE, NONE

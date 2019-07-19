@@ -3,7 +3,6 @@ package cbedoy.streamclient
 import io.getstream.client.Client
 import io.getstream.client.FlatFeed
 import io.getstream.core.http.Token
-import io.getstream.core.models.Activity
 import io.getstream.core.models.Reaction
 
 
@@ -20,10 +19,10 @@ object StreamUtil {
         return client.frontendToken(nickname)
     }
 
-    fun addOrRemoveReaction(nickname: String,  kind: String, activity: Activity): Reaction? {
+    fun addOrRemoveReactionFromActivity(nickname: String, kind: String, activityId: String): Reaction? {
         val reaction = Reaction.Builder()
             .kind(kind)
-            .activityID(activity.id)
+            .activityID(activityId)
             .build()
 
         return client.reactions().add(nickname, reaction).get()

@@ -3,15 +3,15 @@ package cbedoy.streamclient.post.holders
 import android.annotation.SuppressLint
 import android.view.View
 import com.bumptech.glide.Glide
-import io.getstream.core.models.Activity
+import io.getstream.core.models.EnrichedActivity
 import kotlinx.android.synthetic.main.rich_post_holder.*
 
 class RichPostHolder(override val containerView: View) : PostHolder(containerView){
     @SuppressLint("SetTextI18n")
-    override fun reload(activity: Activity) {
-        super.reload(activity)
+    override fun reload(enrichedActivity: EnrichedActivity) {
+        super.reload(enrichedActivity)
 
-        val extra = activity.extra
+        val extra = enrichedActivity.extra
         val content = extra["content"] as String
 
         tweet_mood.text = "${extra["number"]}% of ${extra["mood"]}"
@@ -19,5 +19,7 @@ class RichPostHolder(override val containerView: View) : PostHolder(containerVie
         Glide.with(tweet_image)
             .load(content)
             .into(tweet_image)
+
+        linkReactions()
     }
 }

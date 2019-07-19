@@ -2,14 +2,14 @@ package cbedoy.streamclient.post.holders
 
 import android.view.View
 import cbedoy.streamclient.base.BasePostHolder
-import io.getstream.core.models.Activity
+import io.getstream.core.models.EnrichedActivity
 import kotlinx.android.synthetic.main.post_anonymous.*
 
 class QuotePostHolder (override val containerView: View) : BasePostHolder(containerView){
-    override fun reload(activity: Activity) {
-        super.reload(activity)
+    override fun reload(enrichedActivity: EnrichedActivity) {
+        super.reload(enrichedActivity)
 
-        val extra = activity.extra
+        val extra = enrichedActivity.extra
 
         quote_text.text = "${extra["content"]}"
 

@@ -10,9 +10,12 @@ import cbedoy.streamclient.StreamUtil
 import cbedoy.streamclient.UtilsProvider
 import cbedoy.streamclient.post.dialogs.ReactionsDialog.ReactionsDialogListener.REACTION
 import io.getstream.core.models.Activity
+import io.getstream.core.models.EnrichedActivity
 import io.getstream.core.models.Reaction
-import io.getstream.core.options.Pagination
+import io.getstream.core.options.EnrichmentFlags
+import io.getstream.core.options.Limit
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 import java.util.*
 import kotlin.random.Random
 
@@ -76,14 +79,35 @@ object PostRepository : AnkoLogger {
     fun loadActivities(): MutableList<Activity>? {
         val userId = UtilsProvider.getNickname()
         val feed = StreamUtil.flatFeed("user", userId)
-        return feed.getActivities(Pagination().limit(10)).get()
+
+        val enrichedActivities = loadEnrichedActivities()
+        info(enrichedActivities)
+
+
+        return feed.getActivities(Limit(25)).get()
     }
 
-    fun addReactionToActivity(reactionType: String, activity: Activity): Reaction? {
+    fun loadEnrichedActivities(): MutableList<EnrichedActivity>? {
+        val userId = UtilsProvider.getNickname()
+        val feed = StreamUtil.flatFeed("user", userId)
+
+        val list = feed.getEnrichedActivities(
+            Limit(25),
+            EnrichmentFlags()
+                .withRecentReactions()
+                .withReactionCounts()
+        ).get()
+
+        info(list)
+
+        return list
+    }
+
+    fun addReactionToActivity(reactionType: String, activityId: String): Reaction? {
         val nickname = UtilsProvider.getNickname()
 
         if (reactionType != REACTION.NONE.name){
-            return StreamUtil.addOrRemoveReaction(nickname, reactionType, activity)
+            return StreamUtil.addOrRemoveReactionFromActivity(nickname, reactionType, activityId)
         }
         return null
     }

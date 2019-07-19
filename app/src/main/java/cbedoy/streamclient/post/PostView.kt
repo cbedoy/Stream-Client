@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import cbedoy.streamclient.R
 import cbedoy.streamclient.post.PostAdapter.PostHolderListener
 import cbedoy.streamclient.post.PostAdapter.PostHolderListener.*
-import io.getstream.core.models.Activity
 import kotlinx.android.synthetic.main.fragment_post.*
 import org.jetbrains.anko.AnkoLogger
 import cbedoy.streamclient.post.dialogs.ReactionsDialog
+import io.getstream.core.models.EnrichedActivity
 
 
 class PostView : Fragment(), AnkoLogger {
@@ -31,11 +31,7 @@ class PostView : Fragment(), AnkoLogger {
 
         viewModel = ViewModelProviders.of(this).get(PostViewModel::class.java)
         viewModel.result.observe(this, Observer {
-            if (!adapter.dataModel.contains(it)){
-                adapter.dataModel.add(0, it)
-
-                adapter.notifyItemInserted(0)
-            }
+            //TODO
         })
         viewModel.activities.observe(this, Observer { activities ->
             if (adapter.dataModel.isEmpty()){
@@ -53,12 +49,12 @@ class PostView : Fragment(), AnkoLogger {
             }
         })
         adapter.listener = object : PostHolderListener{
-            override fun onSelectedOptionsFromActivity(options: OPTIONS, activity: Activity) {
+            override fun onSelectedOptionsFromActivity(options: OPTIONS, activity: EnrichedActivity) {
                 if (options == OPTIONS.LIKE){
                     val dialog = ReactionsDialog()
                     dialog.listener = object : ReactionsDialog.ReactionsDialogListener{
                         override fun onSelectedReactionType(type: ReactionsDialog.ReactionsDialogListener.REACTION) {
-                            viewModel.handleReactionFromActivity(type.name, activity)
+                            viewModel.handleReactionFromActivity(type.name, activity.id)
                         }
                     }
 

@@ -6,18 +6,20 @@ import androidx.recyclerview.widget.RecyclerView
 import cbedoy.streamclient.R
 import cbedoy.streamclient.post.PostAdapter
 import cbedoy.streamclient.post.PostAdapter.PostHolderListener.OPTIONS.*
-import io.getstream.core.models.Activity
+import io.getstream.core.models.EnrichedActivity
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.post_options.*
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 
 abstract class BasePostHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
-    LayoutContainer {
+    LayoutContainer, AnkoLogger {
 
     var listener: PostAdapter.PostHolderListener? = null
-    private lateinit var _activity: Activity
+    private lateinit var _enrichedActivity: EnrichedActivity
 
-    open fun reload(activity: Activity){
-        _activity = activity
+    open fun reload(enrichedActivity: EnrichedActivity){
+        _enrichedActivity = enrichedActivity
     }
 
     fun linkReactions() {
@@ -28,12 +30,21 @@ abstract class BasePostHolder(override val containerView: View) : RecyclerView.V
                 R.id.post_option_like -> LIKE
                 else -> NONE
             }
-            listener?.onSelectedOptionsFromActivity(option, _activity)
+            listener?.onSelectedOptionsFromActivity(option, _enrichedActivity)
         }
 
         post_option_comment.setOnClickListener(listener)
         post_option_like.setOnClickListener(listener)
         post_option_share.setOnClickListener(listener)
+
+        val size = _enrichedActivity.reactionCounts
+        val latestReactions = _enrichedActivity.latestReactions
+        val ownReactions = _enrichedActivity.ownReactions
+
+        info(size)
+        info(latestReactions)
+        info(ownReactions)
+
     }
 
 }

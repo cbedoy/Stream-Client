@@ -53,11 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:id="@+id/tweet_date" tools:ignore="RtlHardcoded"/>
 
-
-
-    <View android:layout_width="match_parent"
-          android:layout_marginLeft="@dimen/common_padding"
-          android:layout_marginRight="@dimen/common_padding"
-          android:background="@color/backgroundColor"
-          android:layout_height="1dp"/>
+    <include android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             layout="@layout/post_options"/>
 </LinearLayout>
