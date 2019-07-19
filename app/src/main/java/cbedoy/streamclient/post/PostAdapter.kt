@@ -57,8 +57,8 @@ class PostAdapter : RecyclerView.Adapter<BasePostHolder>() {
         return when {
             type == "tinder" -> tinder
             type == "quote" -> quote
-            extra.size == 1 -> normal
-            else -> rich
+            extra.containsKey("content") -> rich
+            else -> normal
         }
 
 
