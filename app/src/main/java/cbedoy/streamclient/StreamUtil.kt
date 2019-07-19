@@ -3,6 +3,9 @@ package cbedoy.streamclient
 import io.getstream.client.Client
 import io.getstream.client.FlatFeed
 import io.getstream.core.http.Token
+import io.getstream.core.models.Activity
+import io.getstream.core.models.Reaction
+
 
 object StreamUtil {
     private var client: Client =
@@ -15,5 +18,14 @@ object StreamUtil {
 
     fun frontendToken(nickname: String) : Token?{
         return client.frontendToken(nickname)
+    }
+
+    fun addOrRemoveReaction(nickname: String,  kind: String, activity: Activity): Reaction? {
+        val reaction = Reaction.Builder()
+            .kind(kind)
+            .activityID(activity.id)
+            .build()
+
+        return client.reactions().add(nickname, reaction).get()
     }
 }

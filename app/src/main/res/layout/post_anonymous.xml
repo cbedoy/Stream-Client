@@ -19,8 +19,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/quote_text"
                 android:fontFamily="sans-serif-light"/>
-
-
     </LinearLayout>
+
+    <include android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             layout="@layout/post_options"/>
+
 
 </LinearLayout>

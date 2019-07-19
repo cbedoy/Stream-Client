@@ -28,7 +28,7 @@ class LoginView : Fragment(){
                 findNavController().navigate(R.id.open_post_view)
             }
         })
-        nickname_field.setText("carlos")
+        nickname_field.setText("system")
         action_login.setOnClickListener {
             if (nickname_field.text.isNotEmpty()){
                 val nickname = nickname_field.text.toString()

@@ -8,11 +8,10 @@ import kotlinx.android.synthetic.main.rich_post_holder.*
 
 class RichPostHolder(override val containerView: View) : PostHolder(containerView){
     @SuppressLint("SetTextI18n")
-    override fun reload(any: Any) {
-        super.reload(any)
-        any as Activity
+    override fun reload(activity: Activity) {
+        super.reload(activity)
 
-        val extra = any.extra
+        val extra = activity.extra
         val content = extra["content"] as String
 
         tweet_mood.text = "${extra["number"]}% of ${extra["mood"]}"

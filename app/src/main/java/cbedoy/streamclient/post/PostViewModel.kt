@@ -23,4 +23,12 @@ class PostViewModel : NotificationStateViewModel(){
             _state.postValue(NotificationState.DONE)
         }
     }
+
+    fun handleReactionFromActivity(reaction: String, activity: Activity) {
+        scope.launch {
+            _state.postValue(NotificationState.LOADING)
+            PostRepository.addReactionToActivity(reaction, activity)
+            _state.postValue(NotificationState.DONE)
+        }
+    }
 }

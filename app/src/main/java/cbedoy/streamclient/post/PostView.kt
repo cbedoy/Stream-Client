@@ -3,22 +3,26 @@ package cbedoy.streamclient.post
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import cbedoy.streamclient.R
+import cbedoy.streamclient.post.PostAdapter.PostHolderListener
+import cbedoy.streamclient.post.PostAdapter.PostHolderListener.*
+import io.getstream.core.models.Activity
 import kotlinx.android.synthetic.main.fragment_post.*
 import org.jetbrains.anko.AnkoLogger
+import cbedoy.streamclient.post.dialogs.ReactionsDialog
 
-class PostView : Fragment(), AnkoLogger{
 
+class PostView : Fragment(), AnkoLogger {
     lateinit var viewModel : PostViewModel
     var adapter = PostAdapter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         setHasOptionsMenu(true)
-
         return inflater.inflate(R.layout.fragment_post, container, false)
     }
 
@@ -48,7 +52,23 @@ class PostView : Fragment(), AnkoLogger{
                 }
             }
         })
+        adapter.listener = object : PostHolderListener{
+            override fun onSelectedOptionsFromActivity(options: OPTIONS, activity: Activity) {
+                if (options == OPTIONS.LIKE){
+                    val dialog = ReactionsDialog()
+                    dialog.listener = object : ReactionsDialog.ReactionsDialogListener{
+                        override fun onSelectedReactionType(type: ReactionsDialog.ReactionsDialogListener.REACTION) {
+                            viewModel.handleReactionFromActivity(type.name, activity)
+                        }
+                    }
 
+                    if (getActivity() is FragmentActivity){
+                        dialog.show(getActivity()!!.supportFragmentManager, ReactionsDialog::class.java.toString())
+                    }
+                }
+            }
+
+        }
         post_view_recycler_view.layoutManager = LinearLayoutManager(activity)
         post_view_recycler_view.adapter = adapter
         post_view_recycler_view.setHasFixedSize(true)
@@ -79,7 +99,6 @@ class PostView : Fragment(), AnkoLogger{
 
     override fun onResume() {
         super.onResume()
-
         viewModel.loadActivities()
     }
 }

@@ -4,23 +4,24 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import cbedoy.streamclient.R
-import cbedoy.streamclient.base.BaseHolder
+import cbedoy.streamclient.base.BasePostHolder
 import cbedoy.streamclient.post.holders.PostHolder
 import cbedoy.streamclient.post.holders.QuotePostHolder
 import cbedoy.streamclient.post.holders.RichPostHolder
 import cbedoy.streamclient.post.holders.TinderPostHolder
 import io.getstream.core.models.Activity
 
-class PostAdapter : RecyclerView.Adapter<BaseHolder>() {
+class PostAdapter : RecyclerView.Adapter<BasePostHolder>() {
 
     var dataModel: ArrayList<Activity> = ArrayList()
+    var listener: PostHolderListener? = null
     private val normal = 0
     private val rich = 1
     private val tinder = 2
     private val quote = 3
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder {
-        return when (viewType) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BasePostHolder {
+        val holder =  when (viewType) {
             normal -> {
                 val view = LayoutInflater.from(parent.context).inflate(R.layout.post_holder, parent, false)
                 PostHolder(view)
@@ -38,6 +39,8 @@ class PostAdapter : RecyclerView.Adapter<BaseHolder>() {
                 QuotePostHolder(view)
             }
         }
+        holder.listener = listener
+        return holder
     }
 
     override fun getItemCount(): Int {
@@ -60,7 +63,15 @@ class PostAdapter : RecyclerView.Adapter<BaseHolder>() {
 
     }
 
-    override fun onBindViewHolder(holder: BaseHolder, position: Int) {
+    override fun onBindViewHolder(holder: BasePostHolder, position: Int) {
         holder.reload(dataModel[position])
+    }
+
+    interface PostHolderListener{
+        fun onSelectedOptionsFromActivity(options: OPTIONS, activity: Activity)
+
+        enum class OPTIONS {
+            LIKE, COMMENT, SHARE, NONE
+        }
     }
 }

@@ -10,4 +10,9 @@
         dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
         consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt
     </string>
+    <string name="like">Like</string>
+    <string name="comment">Comment</string>
+    <string name="share">Share</string>
+
+    <string name="credit">Made with 🏋🎸🖥 at Aguascalientes, Mexico \n(#iambedoy #codeandmusic)</string>
 </resources>
