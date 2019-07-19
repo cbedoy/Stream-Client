@@ -9,8 +9,8 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import androidx.fragment.app.DialogFragment
 import cbedoy.streamclient.R
-import cbedoy.streamclient.post.dialogs.ReactionsDialog.ReactionsDialogListener.REACTION
-import cbedoy.streamclient.post.dialogs.ReactionsDialog.ReactionsDialogListener.REACTION.*
+import cbedoy.streamclient.ReactionsProvider.REACTION
+import cbedoy.streamclient.ReactionsProvider.REACTION.*
 
 class ReactionsDialog : DialogFragment() {
 
@@ -63,9 +63,5 @@ class ReactionsDialog : DialogFragment() {
 
     interface ReactionsDialogListener {
         fun onSelectedReactionType(type: REACTION)
-
-        enum class REACTION {
-            ANGRY, ENJOY, LIKE, LOVE, SAD, SURPRISED, NONE
-        }
     }
 }

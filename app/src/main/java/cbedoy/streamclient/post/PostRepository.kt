@@ -8,7 +8,6 @@ import cbedoy.streamclient.ContentProvider.randomNumber
 import cbedoy.streamclient.ContentProvider.randomQuote
 import cbedoy.streamclient.StreamUtil
 import cbedoy.streamclient.UtilsProvider
-import cbedoy.streamclient.post.dialogs.ReactionsDialog.ReactionsDialogListener.REACTION
 import io.getstream.core.models.Activity
 import io.getstream.core.models.EnrichedActivity
 import io.getstream.core.models.Reaction
@@ -106,7 +105,7 @@ object PostRepository : AnkoLogger {
     fun addReactionToActivity(reactionType: String, activityId: String): Reaction? {
         val nickname = UtilsProvider.getNickname()
 
-        if (reactionType != REACTION.NONE.name){
+        if (reactionType != "NONE"){
             return StreamUtil.addOrRemoveReactionFromActivity(nickname, reactionType, activityId)
         }
         return null

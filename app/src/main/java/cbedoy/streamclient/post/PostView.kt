@@ -9,6 +9,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import cbedoy.streamclient.R
+import cbedoy.streamclient.ReactionsProvider
+import cbedoy.streamclient.ReactionsProvider.REACTION
 import cbedoy.streamclient.post.PostAdapter.PostHolderListener
 import cbedoy.streamclient.post.PostAdapter.PostHolderListener.*
 import kotlinx.android.synthetic.main.fragment_post.*
@@ -53,7 +55,7 @@ class PostView : Fragment(), AnkoLogger {
                 if (options == OPTIONS.LIKE){
                     val dialog = ReactionsDialog()
                     dialog.listener = object : ReactionsDialog.ReactionsDialogListener{
-                        override fun onSelectedReactionType(type: ReactionsDialog.ReactionsDialogListener.REACTION) {
+                        override fun onSelectedReactionType(type: REACTION) {
                             viewModel.handleReactionFromActivity(type.name, activity.id)
                         }
                     }
