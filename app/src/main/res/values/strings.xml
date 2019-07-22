@@ -15,4 +15,6 @@
     <string name="share">Share</string>
 
     <string name="credit">Made with 🏋🎸🖥 at Aguascalientes, Mexico \n(#iambedoy #codeandmusic)</string>
+    <string name="hello_world">Hello world</string>
+    <string name="write_a_message">Write a message...</string>
 </resources>

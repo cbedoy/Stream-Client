@@ -9,8 +9,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import cbedoy.streamclient.R
-import cbedoy.streamclient.ReactionsProvider
-import cbedoy.streamclient.ReactionsProvider.REACTION
+import cbedoy.streamclient.providers.ReactionsProvider.REACTION
 import cbedoy.streamclient.post.PostAdapter.PostHolderListener
 import cbedoy.streamclient.post.PostAdapter.PostHolderListener.*
 import kotlinx.android.synthetic.main.fragment_post.*
@@ -34,6 +33,10 @@ class PostView : Fragment(), AnkoLogger {
         viewModel = ViewModelProviders.of(this).get(PostViewModel::class.java)
         viewModel.result.observe(this, Observer {
             //TODO
+        })
+        viewModel.selectedActivity.observe(this, Observer {onSelected ->
+            if (onSelected)
+                findNavController().navigate(R.id.open_commenting_view)
         })
         viewModel.activities.observe(this, Observer { activities ->
             if (adapter.dataModel.isEmpty()){
@@ -63,6 +66,8 @@ class PostView : Fragment(), AnkoLogger {
                     if (getActivity() is FragmentActivity){
                         dialog.show(getActivity()!!.supportFragmentManager, ReactionsDialog::class.java.toString())
                     }
+                }else if (options == OPTIONS.COMMENT){
+                    viewModel.openCommentingFromActivity(activity)
                 }
             }
 

@@ -1,7 +1,7 @@
 package cbedoy.streamclient.explorer
 
-import cbedoy.streamclient.StreamUtil
-import cbedoy.streamclient.UtilsProvider
+import cbedoy.streamclient.util.StreamUtil
+import cbedoy.streamclient.providers.UtilsProvider
 import io.getstream.core.models.EnrichedActivity
 import io.getstream.core.options.EnrichmentFlags
 import io.getstream.core.options.Limit

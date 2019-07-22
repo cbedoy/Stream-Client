@@ -9,8 +9,8 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import androidx.fragment.app.DialogFragment
 import cbedoy.streamclient.R
-import cbedoy.streamclient.ReactionsProvider.REACTION
-import cbedoy.streamclient.ReactionsProvider.REACTION.*
+import cbedoy.streamclient.providers.ReactionsProvider.REACTION
+import cbedoy.streamclient.providers.ReactionsProvider.REACTION.*
 
 class ReactionsDialog : DialogFragment() {
 

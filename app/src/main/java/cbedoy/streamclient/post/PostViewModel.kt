@@ -10,6 +10,7 @@ class PostViewModel : NotificationStateViewModel(){
 
     var result : MutableLiveData<Activity> = MutableLiveData()
     var activities : MutableLiveData<List<EnrichedActivity>> = MutableLiveData()
+    var selectedActivity: MutableLiveData<Boolean> = MutableLiveData()
 
     fun sendTweet(tweet: String){
         val activity = PostRepository.addActivity(tweet)
@@ -31,5 +32,9 @@ class PostViewModel : NotificationStateViewModel(){
             PostRepository.addReactionToActivity(reaction, activityId)
             _state.postValue(NotificationState.DONE)
         }
+    }
+
+    fun openCommentingFromActivity(activity: EnrichedActivity) {
+        selectedActivity.value = PostRepository.selectActivity(activity)
     }
 }

@@ -6,4 +6,8 @@
 
     <color name="backgroundColor">#f0f0f0</color>
     <color name="white">#FFFFFF</color>
+
+    <color name="chatBackgroundColor">#33008577</color>
+    <color name="message_in_line">#11333333</color>
+
 </resources>

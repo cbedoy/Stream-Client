@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import cbedoy.streamclient.R
-import cbedoy.streamclient.UtilsProvider
+import cbedoy.streamclient.providers.UtilsProvider
 import kotlinx.android.synthetic.main.fragmet_login.*
 
 class LoginView : Fragment(){
@@ -28,7 +28,7 @@ class LoginView : Fragment(){
                 findNavController().navigate(R.id.open_post_view)
             }
         })
-        nickname_field.setText("system")
+        nickname_field.setText("carlos")
         action_login.setOnClickListener {
             if (nickname_field.text.isNotEmpty()){
                 val nickname = nickname_field.text.toString()

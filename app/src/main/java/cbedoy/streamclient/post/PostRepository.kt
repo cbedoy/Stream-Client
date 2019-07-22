@@ -1,13 +1,13 @@
 package cbedoy.streamclient.post
 
-import cbedoy.streamclient.ContentProvider.randomAvatar
-import cbedoy.streamclient.ContentProvider.randomContent
-import cbedoy.streamclient.ContentProvider.randomMood
-import cbedoy.streamclient.ContentProvider.randomName
-import cbedoy.streamclient.ContentProvider.randomNumber
-import cbedoy.streamclient.ContentProvider.randomQuote
-import cbedoy.streamclient.StreamUtil
-import cbedoy.streamclient.UtilsProvider
+import cbedoy.streamclient.providers.ContentProvider.randomAvatar
+import cbedoy.streamclient.providers.ContentProvider.randomContent
+import cbedoy.streamclient.providers.ContentProvider.randomMood
+import cbedoy.streamclient.providers.ContentProvider.randomName
+import cbedoy.streamclient.providers.ContentProvider.randomNumber
+import cbedoy.streamclient.providers.ContentProvider.randomQuote
+import cbedoy.streamclient.util.StreamUtil
+import cbedoy.streamclient.providers.UtilsProvider
 import io.getstream.core.models.Activity
 import io.getstream.core.models.EnrichedActivity
 import io.getstream.core.models.Reaction
@@ -109,5 +109,11 @@ object PostRepository : AnkoLogger {
             return StreamUtil.addOrRemoveReactionFromActivity(nickname, reactionType, activityId)
         }
         return null
+    }
+
+    fun selectActivity(activity: EnrichedActivity): Boolean {
+        UtilsProvider.setSelectedActivity(activity)
+
+        return true
     }
 }

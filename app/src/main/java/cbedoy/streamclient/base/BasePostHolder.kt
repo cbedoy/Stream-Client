@@ -5,7 +5,7 @@ import android.graphics.Color
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import cbedoy.streamclient.R
-import cbedoy.streamclient.ReactionsProvider
+import cbedoy.streamclient.providers.ReactionsProvider
 import cbedoy.streamclient.post.PostAdapter
 import cbedoy.streamclient.post.PostAdapter.PostHolderListener.OPTIONS.*
 import io.getstream.core.models.EnrichedActivity

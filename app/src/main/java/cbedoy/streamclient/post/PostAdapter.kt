@@ -12,7 +12,7 @@ import cbedoy.streamclient.post.holders.TinderPostHolder
 import io.getstream.core.models.Activity
 import io.getstream.core.models.EnrichedActivity
 
-class PostAdapter : RecyclerView.Adapter<BasePostHolder>() {
+open class PostAdapter : RecyclerView.Adapter<BasePostHolder>() {
 
     var dataModel: ArrayList<EnrichedActivity> = ArrayList()
     var listener: PostHolderListener? = null
