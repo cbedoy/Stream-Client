@@ -21,6 +21,7 @@ abstract class BasePostHolder(override val containerView: View) : RecyclerView.V
     LayoutContainer, AnkoLogger {
 
     var listener: PostAdapter.PostHolderListener? = null
+    var showOptions: Boolean = true
     private lateinit var _enrichedActivity: EnrichedActivity
 
     open fun reload(enrichedActivity: EnrichedActivity){

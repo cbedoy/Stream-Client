@@ -6,5 +6,6 @@
     <dimen name="reaction_text_size">40sp</dimen>
     <dimen name="reaction_container_height">256dp</dimen>
     <dimen name="row_reaction_selector">96dp</dimen>
-    <dimen name="radius_message">8dp</dimen>
+    <dimen name="radius_message">12dp</dimen>
+    <dimen name="options_border">1dp</dimen>
 </resources>

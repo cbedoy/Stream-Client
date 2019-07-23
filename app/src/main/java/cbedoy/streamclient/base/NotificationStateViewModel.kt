@@ -3,6 +3,7 @@ package cbedoy.streamclient.base
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import io.getstream.core.models.EnrichedActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -29,7 +30,4 @@ abstract class NotificationStateViewModel : ViewModel(){
 
         scope.cancel()
     }
-
-
-
 }

@@ -20,13 +20,10 @@ class CommentingInHolder (override val containerView: View) : BaseCommentingHold
         val text = activityData["text"]
         val avatar = activityData["avatar"]
         val createdAt = message.createAt
-
         val format = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(createdAt)
-
 
         message_text.text = "$text"
         message_time_ago.text = format
-
 
         Glide.with(message_avatar)
             .load(avatar)

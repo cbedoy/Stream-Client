@@ -1,23 +1,23 @@
 package cbedoy.streamclient.commenting.holders
 
 import android.view.View
-import androidx.recyclerview.widget.RecyclerView
 import cbedoy.streamclient.models.Message
-import com.bumptech.glide.Glide
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.commenting_in_plain_holder.*
 import kotlinx.android.synthetic.main.commenting_out_plain_holder.*
-import kotlinx.android.synthetic.main.commenting_out_plain_holder.message_container
+import java.text.DateFormat
 
 class CommentingOutHolder(override val containerView: View) : BaseCommentingHolder(containerView),
     LayoutContainer {
 
     override fun reload(message: Message) {
-        val extra = message.reaction.extra
+        val activityData = message.reaction.activityData
 
-        val text = extra["text"]
+        val text = activityData["text"]
+        val createdAt = message.createAt
+        val format = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(createdAt)
 
-        message_container.text = "$text"
+        message_text.text = "$text"
+        message_time_ago.text = format
     }
 
 }

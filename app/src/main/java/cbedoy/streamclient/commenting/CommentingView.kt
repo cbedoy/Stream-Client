@@ -40,6 +40,10 @@ class CommentingView : Fragment(){
             adapter.dataModel.add(it)
 
             adapter.notifyItemInserted(adapter.dataModel.size)
+
+            fragment_commenting_recycler_view.scrollToPosition(
+                adapter.dataModel.size
+            )
         })
         fragment_commenting_action_send.setOnClickListener {
             val messageText = fragment_commenting_input_view.text.toString()

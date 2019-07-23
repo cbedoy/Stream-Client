@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
-              android:background="@color/white"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
 
@@ -11,41 +10,44 @@
 
     <LinearLayout android:layout_width="match_parent"
                   android:orientation="horizontal"
+                  android:background="@color/backgroundColor"
+                  android:id="@+id/post_option_container"
                   android:layout_height="wrap_content">
 
         <Button android:layout_width="wrap_content"
                 android:text="@string/like"
+                android:layout_margin="@dimen/options_border"
                 android:layout_weight="1"
                 android:paddingLeft="@dimen/common_padding"
                 android:paddingRight="@dimen/common_padding"
                 android:id="@+id/post_option_like"
                 android:background="@color/white"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" android:fontFamily="@font/roboto_medium"/>
 
 
         <Button android:layout_width="wrap_content"
                 android:text="@string/comment"
+                android:layout_margin="@dimen/options_border"
                 android:layout_weight="1"
                 android:paddingLeft="@dimen/common_padding"
                 android:paddingRight="@dimen/common_padding"
                 android:id="@+id/post_option_comment"
                 android:background="@color/white"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" android:fontFamily="@font/roboto_medium"/>
 
         <Button android:layout_width="wrap_content"
                 android:text="@string/share"
+                android:layout_margin="@dimen/options_border"
                 android:layout_weight="1"
                 android:paddingLeft="@dimen/common_padding"
                 android:paddingRight="@dimen/common_padding"
                 android:id="@+id/post_option_share"
                 android:background="@color/white"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" android:fontFamily="@font/roboto_medium"/>
 
     </LinearLayout>
 
     <View android:layout_width="match_parent"
           android:background="@color/backgroundColor"
           android:layout_height="32dp"/>
-
-
 </LinearLayout>

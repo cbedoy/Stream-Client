@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.View
 import com.bumptech.glide.Glide
 import io.getstream.core.models.EnrichedActivity
+import kotlinx.android.synthetic.main.post_options.*
 import kotlinx.android.synthetic.main.rich_post_holder.*
 
 class RichPostHolder(override val containerView: View) : PostHolder(containerView){
@@ -20,6 +21,6 @@ class RichPostHolder(override val containerView: View) : PostHolder(containerVie
             .load(content)
             .into(tweet_image)
 
-        linkReactions()
+        if (showOptions) linkReactions() else post_option_container.visibility = View.GONE
     }
 }

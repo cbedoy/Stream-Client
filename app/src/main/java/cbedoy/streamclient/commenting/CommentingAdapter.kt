@@ -19,13 +19,12 @@ import io.getstream.core.models.EnrichedActivity
 class CommentingAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var dataModel: ArrayList<Any> = ArrayList()
-    var listener: PostAdapter.PostHolderListener? = null
     private val normal = 0
     private val rich = 1
     private val tinder = 2
     private val quote = 3
     private val messageIn = 4
-    private val messageOut = 4
+    private val messageOut = 5
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val holder : RecyclerView.ViewHolder =  when (viewType) {
@@ -55,8 +54,9 @@ class CommentingAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
         }
 
-        if (holder is BasePostHolder)
-            holder.listener = listener
+        if (holder is BasePostHolder) {
+            holder.showOptions = false
+        }
 
         return holder
     }

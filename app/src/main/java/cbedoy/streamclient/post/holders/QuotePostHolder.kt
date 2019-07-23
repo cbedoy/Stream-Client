@@ -4,6 +4,7 @@ import android.view.View
 import cbedoy.streamclient.base.BasePostHolder
 import io.getstream.core.models.EnrichedActivity
 import kotlinx.android.synthetic.main.post_anonymous.*
+import kotlinx.android.synthetic.main.post_options.*
 
 class QuotePostHolder (override val containerView: View) : BasePostHolder(containerView){
     override fun reload(enrichedActivity: EnrichedActivity) {
@@ -13,8 +14,6 @@ class QuotePostHolder (override val containerView: View) : BasePostHolder(contai
 
         quote_text.text = "${extra["content"]}"
 
-        //Keep in mind you should have a post options view injection on your layout :)
-        //post_options.xml
-        linkReactions()
+        if (showOptions) linkReactions() else post_option_container.visibility = View.GONE
     }
 }

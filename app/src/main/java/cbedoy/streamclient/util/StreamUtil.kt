@@ -30,7 +30,7 @@ object StreamUtil {
 
     fun addMessageToActivity(nickname: String, activityId: String, messageText: String) : Reaction?{
         val reaction = Reaction.Builder()
-            .kind("reaction")
+            .kind("message")
             .activityID(activityId)
             .extraField("avatar", "https://avatars0.githubusercontent.com/u/5570799?s=460&v=4")
             .extraField("text", messageText)
