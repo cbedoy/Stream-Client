@@ -15,6 +15,7 @@ import cbedoy.streamclient.post.PostAdapter
 import cbedoy.streamclient.post.PostViewModel
 import cbedoy.streamclient.post.dialogs.ReactionsDialog
 import cbedoy.streamclient.providers.ReactionsProvider
+import cbedoy.streamclient.providers.UtilsProvider
 import io.getstream.core.models.EnrichedActivity
 import kotlinx.android.synthetic.main.fragment_explorer.*
 
@@ -84,6 +85,6 @@ class ExplorerView : Fragment(){
     override fun onResume() {
         super.onResume()
 
-        viewModel.loadExplorer(arrayListOf("alex", "vanessa", "system", "carlos"))
+        viewModel.loadExplorer(UtilsProvider.subscribers())
     }
 }

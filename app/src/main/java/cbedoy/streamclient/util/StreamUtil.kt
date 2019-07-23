@@ -1,5 +1,6 @@
 package cbedoy.streamclient.util
 
+import cbedoy.streamclient.providers.UtilsProvider
 import io.getstream.client.Client
 import io.getstream.client.FlatFeed
 import io.getstream.core.http.Token
@@ -29,10 +30,13 @@ object StreamUtil {
     }
 
     fun addMessageToActivity(nickname: String, activityId: String, messageText: String) : Reaction?{
+
+        val avatar = UtilsProvider.avatarFromNickname(nickname)
+
         val reaction = Reaction.Builder()
             .kind("message")
             .activityID(activityId)
-            .extraField("avatar", "https://avatars0.githubusercontent.com/u/5570799?s=460&v=4")
+            .extraField("avatar", avatar)
             .extraField("text", messageText)
             .extraField("nickname", nickname)
             .build()
