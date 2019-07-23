@@ -28,9 +28,15 @@ object StreamUtil {
         return client.reactions().add(nickname, reaction).get()
     }
 
-    fun getNotifications(nickname: String){
-        val notificationFeed = client.notificationFeed("notifications", nickname)
+    fun addMessageToActivity(nickname: String, activityId: String, messageText: String) : Reaction?{
+        val reaction = Reaction.Builder()
+            .kind("reaction")
+            .activityID(activityId)
+            .extraField("avatar", "https://avatars0.githubusercontent.com/u/5570799?s=460&v=4")
+            .extraField("text", messageText)
+            .extraField("nickname", nickname)
+            .build()
 
-
+        return client.reactions().add(nickname, reaction).get()
     }
 }

@@ -35,8 +35,10 @@ class PostView : Fragment(), AnkoLogger {
             //TODO
         })
         viewModel.selectedActivity.observe(this, Observer {onSelected ->
-            if (onSelected)
+            if (onSelected){
                 findNavController().navigate(R.id.open_commenting_view)
+            }
+
         })
         viewModel.activities.observe(this, Observer { activities ->
             if (adapter.dataModel.isEmpty()){

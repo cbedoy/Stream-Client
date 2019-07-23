@@ -26,8 +26,12 @@ object ReactionsProvider {
         )   //😱
     )
 
-    fun getReactionData(reaction: String) : ReactionData {
-        return reactions[reaction]!!
+    fun getReactionData(reaction: String) : ReactionData ? {
+        return reactions[reaction]
+    }
+
+    fun allowedReactions() : MutableSet<String> {
+        return reactions.keys
     }
 
     enum class REACTION {

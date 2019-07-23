@@ -21,7 +21,7 @@ import kotlin.random.Random
 
 object PostRepository : AnkoLogger {
     //  Actor is the user id of the person performing the activity.
-    //  Tweet is a custom field containing the message.
+    //  Tweet is a custom field containing the reaction.
     //  Verb is the type of activity the actor is engaging in.
     //  Object is the id of the tweet object in your database.
 
@@ -93,6 +93,7 @@ object PostRepository : AnkoLogger {
         val list = feed.getEnrichedActivities(
             Limit(25),
             EnrichmentFlags()
+                .withOwnReactions()
                 .withRecentReactions()
                 .withReactionCounts()
         ).get()
