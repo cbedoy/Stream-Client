@@ -14,6 +14,9 @@ class CommentingViewModel : NotificationStateViewModel(){
     private val _receivedMessage = MutableLiveData<Message>()
     val receivedMessage: LiveData<Message> = _receivedMessage
 
+    private val _receivedMessages = MutableLiveData<List<Message>>()
+    val receivedMessages: LiveData<List<Message>> = _receivedMessages
+
     fun loadActivity() {
         scope.launch {
             _state.postValue(NotificationState.LOADING)
@@ -27,6 +30,15 @@ class CommentingViewModel : NotificationStateViewModel(){
             scope.launch {
                 _receivedMessage.postValue(CommentingRepository.sendMessage(messageText))
             }
+        }
+    }
+
+    fun loadComments() {
+        scope.launch {
+            _state.postValue(NotificationState.LOADING)
+            val reactions = CommentingRepository.requestReactions("message")
+            _receivedMessages.postValue(reactions)
+            _state.postValue(NotificationState.DONE)
         }
     }
 

@@ -1,7 +1,9 @@
 package cbedoy.streamclient.providers
 
 import cbedoy.streamclient.models.User
+import cbedoy.streamclient.util.StreamUtil
 import io.getstream.core.models.EnrichedActivity
+import io.getstream.core.utils.Auth
 import java.security.MessageDigest
 
 object UtilsProvider{
@@ -25,6 +27,8 @@ object UtilsProvider{
     }
 
     fun getNickname() = user.nickname
+
+    fun getToken() = StreamUtil.developJWT
 
     fun getSelectedActivity() = selectedActivity
 

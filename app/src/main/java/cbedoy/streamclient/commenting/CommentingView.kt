@@ -9,11 +9,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import cbedoy.streamclient.R
+import cbedoy.streamclient.models.Message
+import io.getstream.core.models.EnrichedActivity
 import kotlinx.android.synthetic.main.fragment_commenting.*
 
 class CommentingView : Fragment(){
 
     lateinit var viewModel: CommentingViewModel
+    private var identifiers = ArrayList<String>()
     var adapter = CommentingAdapter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -30,20 +33,15 @@ class CommentingView : Fragment(){
 
         viewModel = ViewModelProviders.of(this).get(CommentingViewModel::class.java)
         viewModel.currentActivity.observe(this, Observer { dataModel ->
-            if(dataModel.isNotEmpty()){
-                adapter.dataModel.addAll(dataModel)
+            addEntities(dataModel)
 
-                adapter.notifyDataSetChanged()
-            }
+            viewModel.loadComments()
         })
-        viewModel.receivedMessage.observe(this, Observer {
-            adapter.dataModel.add(it)
-
-            adapter.notifyItemInserted(adapter.dataModel.size)
-
-            fragment_commenting_recycler_view.scrollToPosition(
-                adapter.dataModel.size
-            )
+        viewModel.receivedMessage.observe(this, Observer { message ->
+            addEntities(arrayListOf(message))
+        })
+        viewModel.receivedMessages.observe(this, Observer { messages ->
+            addEntities(messages)
         })
         fragment_commenting_action_send.setOnClickListener {
             val messageText = fragment_commenting_input_view.text.toString()
@@ -51,6 +49,30 @@ class CommentingView : Fragment(){
 
             viewModel.sendMessage(messageText)
         }
+    }
+
+    private fun addEntities(dataModel: List<Any>) {
+        dataModel.forEach {
+            if ((it is EnrichedActivity) && !identifiers.contains(it.id)){
+                adapter.dataModel.add(it)
+
+                identifiers.add(it.id)
+
+                adapter.notifyItemInserted(identifiers.size)
+            }else if ((it is Message) && !identifiers.contains(it.reaction.id)){
+                adapter.dataModel.add(it)
+
+                identifiers.add(it.reaction.id)
+
+                adapter.notifyItemInserted(identifiers.size)
+            }
+        }
+
+        fragment_commenting_recycler_view.postDelayed({
+            fragment_commenting_recycler_view.scrollToPosition(
+                adapter.dataModel.size
+            )
+        }, 300)
     }
 
     override fun onResume() {

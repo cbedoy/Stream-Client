@@ -2,11 +2,26 @@ package cbedoy.streamclient.commenting
 
 import cbedoy.streamclient.models.Message
 import cbedoy.streamclient.providers.UtilsProvider
+import cbedoy.streamclient.retrofit.RetrofitService
+import cbedoy.streamclient.services.ReactionService
 import cbedoy.streamclient.util.StreamUtil
+import cbedoy.streamclient.util.StreamUtil.secret
+import com.auth0.jwt.JWT
+import com.auth0.jwt.algorithms.Algorithm
+import io.getstream.client.ReactionsClient
 import io.getstream.core.models.Reaction
+import io.getstream.core.options.EnrichmentFlags
+import io.getstream.core.options.Limit
+import io.getstream.core.utils.Auth
+import io.getstream.core.utils.Auth.buildReactionsToken
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.doAsyncResult
+import org.jetbrains.anko.onComplete
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 object CommentingRepository {
     fun prepareActivity() : List<Any> {
@@ -20,7 +35,6 @@ object CommentingRepository {
             val comments = reactionCounts["message"]
             comments?.forEach {
                 //val date = dateFromReaction(it) //TODO Get Fixed date
-
                 val owner = isOwnerFromReaction(it)
 
                 result.add(Message(it, owner, it.userID))
@@ -53,6 +67,19 @@ object CommentingRepository {
             return Message(reaction, true, nickname)
         }
         return null
+    }
+
+    fun requestReactions(type: String): ArrayList<Message> {
+        val result = ArrayList<Message>()
+        val selectedActivity = UtilsProvider.getSelectedActivity().id
+        val reactionsFromActivity = StreamUtil.reactionsFromActivity(selectedActivity, type)
+
+        reactionsFromActivity?.forEach {
+            val owner = isOwnerFromReaction(it)
+
+            result.add(Message(it, owner, it.userID))
+        }
+        return result
     }
 
 }
