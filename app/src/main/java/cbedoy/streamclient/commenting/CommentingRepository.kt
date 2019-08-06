@@ -2,26 +2,11 @@ package cbedoy.streamclient.commenting
 
 import cbedoy.streamclient.models.Message
 import cbedoy.streamclient.providers.UtilsProvider
-import cbedoy.streamclient.retrofit.RetrofitService
-import cbedoy.streamclient.services.ReactionService
 import cbedoy.streamclient.util.StreamUtil
-import cbedoy.streamclient.util.StreamUtil.secret
-import com.auth0.jwt.JWT
-import com.auth0.jwt.algorithms.Algorithm
-import io.getstream.client.ReactionsClient
 import io.getstream.core.models.Reaction
-import io.getstream.core.options.EnrichmentFlags
-import io.getstream.core.options.Limit
-import io.getstream.core.utils.Auth
-import io.getstream.core.utils.Auth.buildReactionsToken
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.doAsyncResult
-import org.jetbrains.anko.onComplete
-import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 
 object CommentingRepository {
     fun prepareActivity() : List<Any> {
@@ -34,10 +19,9 @@ object CommentingRepository {
         if (reactionCounts.containsKey("message")){
             val comments = reactionCounts["message"]
             comments?.forEach {
-                //val date = dateFromReaction(it) //TODO Get Fixed date
+                val timestamp = dateFromReaction(it).time
                 val owner = isOwnerFromReaction(it)
-
-                result.add(Message(it, owner, it.userID))
+                result.add(Message(it, owner, it.userID, timestamp))
             }
         }
         return result
@@ -50,9 +34,12 @@ object CommentingRepository {
     }
 
     private fun dateFromReaction(it: Reaction): Date {
-        val createdAt = it.extra["created_at"] as String
+        var createdAt = it.extra["created_at"] as String
 
-        val formatter =  SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.getDefault())
+        createdAt = createdAt.replace("T", " ")
+        createdAt = createdAt.replace("Z", "")
+
+        val formatter =  SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
         return formatter.parse(createdAt)
     }
 

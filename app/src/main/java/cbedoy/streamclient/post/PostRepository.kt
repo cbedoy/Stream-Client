@@ -17,6 +17,8 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import java.util.*
 import kotlin.random.Random
+import io.getstream.core.utils.Enrichment
+import kotlin.collections.HashMap
 
 
 object PostRepository : AnkoLogger {
@@ -28,6 +30,30 @@ object PostRepository : AnkoLogger {
     fun addActivity(tweet: String) : Activity {
         val nickname = UtilsProvider.getNickname()
         val feed = StreamUtil.flatFeed("user", nickname)
+
+        if (nickname == "native"){
+
+            val attachments = HashMap<String, Any>()
+            val image = HashMap<String, Any>()
+
+            image["image"] = "https://goo.gl/7dePYs"
+
+            attachments["title"] = "Crozzon di Brenta photo by Lorenzo Spoleti"
+            attachments["description"] = "Download this photo in Italy by Lorenzo Spoleti"
+            attachments["url"] = "https://unsplash.com/photos/yxKHOTkAins"
+            attachments["images"] = arrayListOf(image)
+
+            return feed.addActivity(
+                Activity.builder()
+                    .actor(Enrichment.createUserReference("user-one"))
+                    .verb("post")
+                    .`object`("I love this picture")
+                    .extraField(
+                        "attachments", attachments
+                    )
+                    .build()
+            ).join()
+        }
 
         val activity: Activity
         if (nickname == "system"){

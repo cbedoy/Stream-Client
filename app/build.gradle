@@ -65,9 +65,12 @@ dependencies {
     implementation "org.jetbrains.anko:anko-commons:$anko_version"
     implementation "org.jetbrains.anko:anko-coroutines:$anko_version"
 
+    implementation 'com.github.alhazmy13:android-faye-client:1.1.0'
+
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version_ktx"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version_ktx"
 
+    implementation 'com.github.marlonlom:timeago:4.0.1'
 
     // ViewModel and LiveData
     implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"

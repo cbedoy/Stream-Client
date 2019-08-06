@@ -105,5 +105,13 @@ class PostView : Fragment(), AnkoLogger {
     override fun onResume() {
         super.onResume()
         viewModel.loadActivities()
+
+        viewModel.subscribe()
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        viewModel.unsubscribe()
     }
 }

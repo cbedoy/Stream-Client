@@ -3,6 +3,7 @@ package cbedoy.streamclient.util
 import cbedoy.streamclient.providers.UtilsProvider
 import io.getstream.client.Client
 import io.getstream.client.FlatFeed
+import io.getstream.client.NotificationFeed
 import io.getstream.core.LookupKind
 import io.getstream.core.http.Token
 import io.getstream.core.models.Reaction
@@ -21,6 +22,10 @@ object StreamUtil {
 
     fun flatFeed(type: String, user: String) : FlatFeed {
         return client.flatFeed(type, user)
+    }
+
+    fun notificationFeed(type: String, user: String): NotificationFeed {
+        return client.notificationFeed(type, user)
     }
 
     fun reactionsFromActivity(activityId: String, type: String): MutableList<Reaction>? {

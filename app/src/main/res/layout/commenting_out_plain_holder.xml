@@ -8,30 +8,35 @@
 
 
 
-    <TextView android:layout_width="wrap_content"
-              android:id="@+id/message_text"
-              android:text="Some string here"
-              android:padding="8dp"
-              android:layout_gravity="right"
-              android:gravity="right"
-              android:textSize="15sp"
-              android:fontFamily="@font/roboto"
-              android:layout_marginBottom="0dp"
-              android:layout_marginTop="8dp"
-              android:layout_marginRight="8dp"
-              android:layout_marginLeft="8dp"
-              android:background="@drawable/out_message_drawable"
-              android:layout_height="wrap_content"/>
+    <LinearLayout android:layout_width="wrap_content"
+                  android:orientation="vertical"
+                  android:paddingRight="8dp"
+                  android:layout_margin="8dp"
+                  android:paddingLeft="8dp"
+                  android:paddingTop="4dp"
+                  android:paddingBottom="4dp"
+                  android:layout_gravity="right"
+                  android:background="@drawable/out_message_drawable"
+                  android:layout_height="wrap_content">
 
-    <TextView android:layout_width="match_parent"
-              android:gravity="right"
-              android:textSize="10sp"
-              android:id="@+id/message_time_ago"
-              android:fontFamily="@font/roboto_light"
-              android:text="Time Ago"
-              android:paddingRight="8dp"
-              android:paddingLeft="8dp"
-              android:paddingBottom="8dp"
-              android:layout_height="wrap_content"/>
+        <TextView android:layout_width="wrap_content"
+                  android:id="@+id/message_text"
+                  android:text="Some string here"
+                  android:layout_gravity="right"
+                  android:gravity="right"
+                  android:textSize="16sp"
+                  android:fontFamily="@font/roboto"
+                  android:layout_height="wrap_content"/>
+
+        <TextView android:layout_width="match_parent"
+                  android:gravity="right"
+                  android:layout_marginTop="4dp"
+                  android:layout_marginBottom="4dp"
+                  android:textSize="12sp"
+                  android:id="@+id/message_time_ago"
+                  android:fontFamily="@font/roboto_light"
+                  android:text="Time Ago"
+                  android:layout_height="wrap_content"/>
+    </LinearLayout>
 
 </LinearLayout>

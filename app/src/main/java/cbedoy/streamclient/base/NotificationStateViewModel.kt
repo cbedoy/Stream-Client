@@ -12,10 +12,12 @@ import kotlinx.coroutines.cancel
 abstract class NotificationStateViewModel : ViewModel(){
 
     private var job = Job()
+    private var listenerJob = Job()
 
     val _state = MutableLiveData<NotificationState>()
     val state: LiveData<NotificationState> = _state
     val scope = CoroutineScope(job + Dispatchers.IO )
+    val listenerScope = CoroutineScope(listenerJob + Dispatchers.Main)
 
     enum class NotificationState {
         LOADING, NONE, ERROR, DONE

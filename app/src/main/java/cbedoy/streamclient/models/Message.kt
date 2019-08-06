@@ -6,4 +6,4 @@ import java.util.*
 data class Message(var reaction: Reaction,
                    var owner: Boolean = false,
                    var nickname: String = "unknown",
-                   var createAt: Date = Date())
+                   var timestamp: Long = System.currentTimeMillis())

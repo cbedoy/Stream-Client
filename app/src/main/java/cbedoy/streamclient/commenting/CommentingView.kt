@@ -20,7 +20,6 @@ class CommentingView : Fragment(){
     var adapter = CommentingAdapter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
         return inflater.inflate(R.layout.fragment_commenting, container, false)
     }
 
@@ -72,7 +71,7 @@ class CommentingView : Fragment(){
             fragment_commenting_recycler_view.scrollToPosition(
                 adapter.dataModel.size
             )
-        }, 300)
+        }, 700)
     }
 
     override fun onResume() {

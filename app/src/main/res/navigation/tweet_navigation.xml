@@ -6,21 +6,25 @@
     <fragment android:id="@+id/loginView" android:name="cbedoy.streamclient.login.LoginView" android:label="LoginView">
         <action android:id="@+id/open_post_view" app:destination="@id/postView"
                 app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
-                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"
+                app:popUpTo="@+id/loginView"/>
     </fragment>
     <fragment android:id="@+id/postView" android:name="cbedoy.streamclient.post.PostView" android:label="PostView">
         <action android:id="@+id/open_explorer_view" app:destination="@+id/explorerView"
                 app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
-                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"
+                app:popUpTo="@+id/postView"/>
         <action android:id="@+id/open_commenting_view" app:destination="@id/commentingView"
                 app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
-                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"
+                app:popUpTo="@+id/postView"/>
     </fragment>
     <fragment android:id="@+id/explorerView" android:name="cbedoy.streamclient.explorer.ExplorerView"
               android:label="ExplorerView">
         <action android:id="@+id/open_commenting_view" app:destination="@id/commentingView"
                 app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
-                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"
+                app:popUpTo="@+id/postView"/>
     </fragment>
     <fragment android:id="@+id/commentingView" android:name="cbedoy.streamclient.commenting.CommentingView"
               android:label="CommentingView"/>
